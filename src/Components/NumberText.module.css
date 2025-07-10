@@ -1,0 +1,13 @@
+.text {
+	font-size: 14pt;
+}
+
+.text > span:nth-child(1) {
+	color: var(--b075);
+}
+
+.text > span:nth-child(2) {
+	font-size: .8em;
+	letter-spacing: .1em;
+	color: var(--b05);
+}

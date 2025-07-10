@@ -1,0 +1,106 @@
+.container.outside {
+	width: 100%;
+	height: 100%;
+	background-color: var(--bgc2);
+}
+
+.container.inside {
+	width: 100%;
+}
+
+.b09 {
+	color: var(--b09);
+}
+
+.b075 {
+	color: var(--b075);
+}
+
+.columnName {
+	font-size: 10pt;
+}
+
+.body {
+	font-size: 12pt;
+}
+
+.form,
+.result {
+	gap: 30px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.table,
+.table > div {
+	gap: 15px;
+}
+
+.table {
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: row !important;
+}
+
+.table > div {
+	display: flex;
+}
+
+.table > div:nth-child(1) {
+	flex-shrink: 0;
+}
+
+.table > div:nth-child(2) {
+	width: 50%;
+}
+
+.line {
+	width: 100%;
+	height: 2px;
+	margin: 40px 0;
+	border-radius: 2px;
+	background-color: var(--b005);
+}
+
+.thanks {
+	width: 100%;
+	text-align: center;
+	font-size: 9pt;
+	color: var(--b025);
+	padding: 75px 25px 25px;
+}
+
+.thanks a {
+	padding: 0 5px;
+	color: var(--b025);
+}
+
+@media screen and (max-width: 767px) {
+	.container.inside {
+		padding: 0 50px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.container.outside {
+		justify-content: center;
+		align-items: center;
+	}
+
+	.container.inside {
+		padding: 0 50px;
+		max-width: 500px;
+		border-radius: 7.5px;
+		background-color: var(--bgc1);
+		box-shadow: 0 1px 10px 1px rgba(0, 0, 0, .05);
+	}
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 768px) {
+	.container.inside {
+		border: 1px solid var(--b01);
+	}
+}
