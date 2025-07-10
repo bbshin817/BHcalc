@@ -25,9 +25,26 @@ const Root = () => {
 		[key] : value
 	}));
 
+	const resetResult = () => {
+		[
+			"currentTotalXp",
+			"nextTotalXp",
+			"bhDelay",
+			"nextLevel"
+		].map((key) => {
+			setResult(key, null);
+		});
+	}
+
 	const updateValue = (e, valueName) => {
 		const value = e.target.value;
-		if (
+		if (valueName === 'projectXp' && !value)
+		{
+			ref.current.projectXp = null;
+			resetResult();
+			return ;
+		}
+		else if (
 			(valueName === 'projectXp' && !value)
 			|| (
 				(valueName === 'currentLevel' || valueName === 'score')

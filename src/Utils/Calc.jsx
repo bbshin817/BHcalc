@@ -3,21 +3,27 @@ import XpByLevel from '../database/xpByLevel.json'
 export const getCurrentTotalXP = (currentLevel) => {
 	const floor = Math.floor(currentLevel);
 	const ceil = Math.ceil(currentLevel);
-	const total = XpByLevel[floor].total;
-	const required = XpByLevel[ceil].required;
+	const total = XpByLevel[floor]?.total;
+	const required = XpByLevel[ceil]?.required;
 
+	if (!total || !required)
+		return null;
 	const ratio = currentLevel - floor;
 	return (total + required * ratio);
 }
 
 export const getNextTotalXP = (currentLevel, projectXP, score) => {
 	const currentTotalXp = getCurrentTotalXP(currentLevel);
+	if (!currentTotalXp)
+		return null;
 	return (currentTotalXp + projectXP * score / 100);
 }
 
 export const getBhDelay = (currentLevel, projectXP, score) => {
 	const currentTotalXp = getCurrentTotalXP(currentLevel);
 	const nextTotalXp = getNextTotalXP(currentLevel, projectXP, score);
+	if (!currentTotalXp || !nextTotalXp)
+		return null;
 	const normalizedNext = Math.pow(Math.min(nextTotalXp, 78908) / 49980, 0.45);
 	const normalizedCurrent = Math.pow(currentTotalXp / 49980, 0.45);
 
@@ -27,6 +33,8 @@ export const getBhDelay = (currentLevel, projectXP, score) => {
 
 export const getNextLevel = (currentLevel, projectXP, score) => {
 	const nextTotalXp = getNextTotalXP(currentLevel, projectXP, score);
+	if (!nextTotalXp)
+		return null;
 	let level = 0;
 	for (let i = 0; i < XpByLevel.length; i++) {
 		if (nextTotalXp < XpByLevel[i].total) {
